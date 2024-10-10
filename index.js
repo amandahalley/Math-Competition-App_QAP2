@@ -1,5 +1,5 @@
 const express = require('express');
-const { getQuestion } = require('./utils/mathUtilities');
+const { getQuestion, isCorrectAnswer } = require('./utils/mathUtilities');
 const app = express();
 const port = 3000;
 
@@ -17,19 +17,15 @@ app.get('/quiz', (req, res) => {
     res.render('quiz', {question: getQuestion()});
 });
 
-app.get('/complete', (req, res) => {
-
-});
-
-app.get('/leader', (req, res) => {
-
+app.get('/leaderboards', (req, res) => {
+    res.render('leaderboards');
 })
 
 
 //Handles quiz submissions.
 app.post('/quiz', (req, res) => {
     const { answer } = req.body;
-    console.log(`Answer: ${answer}`);
+    console.log(`Answer: ${answer}` );
 
     //answer will contain the value the user entered on the quiz page
     //Logic must be added here to check if the answer is correct, then track the streak and redirect properly
