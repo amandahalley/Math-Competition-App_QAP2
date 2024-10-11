@@ -1,3 +1,12 @@
 <%- include('partials/header') %>
 
-<h2>leadboard</h2>
+<h2>Leaderboard</h2>
+
+<!-- Display the list of top streaks -->
+ <h2>Top 10 Streaks:</h2>
+<ul>
+    <% topStreaks.forEach((streak, index) => { %>
+        <li><%= index + 1 %>. <%= streak %></li>
+    <% }) %>
+</ul>
+<p>Current Streak: <%= streak %></p> <!-- Display the current streak -->
