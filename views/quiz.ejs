@@ -4,7 +4,8 @@
     <!-- Display question or whatever else here -->
     <h1>Math Quiz</h1>
     <p>Answer the question below:</p>
-    <%= question %>
+    <p>Streak: <%= streak %></p>  <!-- Display the current streak -->
+    <p>Question: <%= question %></p>  <!-- Display the current question -->
 
     <form action="/quiz" method="POST">
         <!-- This handles sending the user's answer back to the server. It's not recommended you modify this, as you shouldn't need to -->       
