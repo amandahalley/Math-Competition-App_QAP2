@@ -7,6 +7,11 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true })); // For parsing form data
 app.use(express.static('public')); // To serve static files (e.g., CSS)
 
+let quizState = {
+    currentQuestion: null,
+    streak: 0,
+    topStreaks: []
+};
 
 //Some routes required for full functionality are missing here. Only get routes should be required
 app.get('/', (req, res) => {
@@ -14,11 +19,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/quiz', (req, res) => {
-    res.render('quiz', {question: getQuestion()});
+    const question = getQuestion();
+    quizState.currentQuestion = question; // store question in global state
+    res.render('quiz', {question, streak: quizState.streak});
 });
 
 app.get('/leaderboards', (req, res) => {
-    res.render('leaderboards');
+    res.render('leaderboards', {topStreaks: quizState.topStreaks, streak: quizState.streak});
 })
 
 app.get('/complete', (req, res) => { //quiz complete page not made yet
@@ -28,13 +35,34 @@ app.get('/complete', (req, res) => { //quiz complete page not made yet
 
 //Handles quiz submissions.
 app.post('/quiz', (req, res) => {
-    const { answer } = req.body;
-    console.log(`Answer: ${answer}` );
+    const { answer } = req.body; //get the user's answer from the request
+    const question = quizState.currentQuestion; //get the current question from the state
 
-    //answer will contain the value the user entered on the quiz page
-    //Logic must be added here to check if the answer is correct, then track the streak and redirect properly
-    //By default we'll just redirect to the homepage again.
-    res.redirect('/');
+    if (question) {
+        console.log(question);
+        //check if the answer is correct
+        const isCorrect = isCorrectAnswer(question, parseFloat(answer));
+        console.log("test");
+        if (isCorrect) {
+            quizState.streak += 1; //update streak by 1 if the answer is correct
+            console.log(quizState.streak);
+            res.redirect('/complete'); //redirect to the completion page
+        } else {
+            // If the answer is incorrect, update the leaderboard with streak
+            if (quizState.streak > 0) {
+                quizState.topStreaks.push(quizState.streak);
+                quizState.topStreaks.sort((a, b) => b - a); //have top 10 streaks show in descending order
+                quizState.topStreaks = quizState.topStreaks.slice(0, 10); // Keep only the top 10 streaks
+            }
+
+            quizState.streak = 0; //reset the streak if answer is incorrect
+            res.redirect('/quiz'); //redirect back to the quiz page
+        }
+    } else {
+        res.redirect('/'); //redirect to the home page
+    }
+
+    console.log(`Answer: ${answer}, Current Streak: ${quizState.streak}`);
 });
 
 // Start the server
