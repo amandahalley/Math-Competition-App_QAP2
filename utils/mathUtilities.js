@@ -36,18 +36,19 @@ console.log(getQuestion());
  * @returns {boolean} True if the answer was correct, false otherwise.
  */
 function isCorrectAnswer(question, answer) {
+    console.log('tets');
     //split question
-    const [a, operator, b] = question.split();
+    const [a, operator, b] = question.split(' ');
      
     //convert numbers to integer from string
-    const num1 = parseInt(a, 100);
-    const num2 = parseInt(b, 100);
+    const num1 = parseInt(a, 10);
+    const num2 = parseInt(b, 10);
 
     // get value of the result of the question based on which operator is used
     let correctAnswer;
-    switch(operator) {
+    switch (operator) {
         case '*':
-            correctAnswer = num1 + num2;
+            correctAnswer = num1 * num2;
             break;
         case '/':
             correctAnswer = num1 / num2;
@@ -56,14 +57,14 @@ function isCorrectAnswer(question, answer) {
             correctAnswer = num1 - num2;
             break;
         case '+':
-        correctAnswer = num1 + num2;
-        break;
+            correctAnswer = num1 + num2;
+            break;
         
         default:
             return false;
     }
-
-    return correctAnswer === answer;
+    console.log(correctAnswer === answer);
+    return correctAnswer === parseFloat(answer);
 }
 // // Example usage of isCorrectAnswer
 // const question = getQuestion();
