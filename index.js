@@ -21,6 +21,10 @@ app.get('/leaderboards', (req, res) => {
     res.render('leaderboards');
 })
 
+app.get('/complete', (req, res) => { //quiz complete page not made yet
+    res.render('complete');
+})
+
 
 //Handles quiz submissions.
 app.post('/quiz', (req, res) => {
