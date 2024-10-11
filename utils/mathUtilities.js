@@ -10,10 +10,18 @@ function getQuestion() {
     //randomly choose one of the defined operators
     const randomOperator = operators[Math.floor(Math.random() * operators.length)];
 
+    let a, b;
 
-    //randomly generate a number for each variable between 1 & 10
-    var a = Math.floor(Math.random() * 10) + 1;
-    var b = Math.floor(Math.random() * 10) + 1;
+    //make sure numbers for division are only up to 100
+    if (randomOperator === '/') {
+        b = Math.floor(Math.random() * 10) + 1; 
+        a = b * (Math.floor(Math.random() * 10) + 1); // makes sure 'a' is a multiple of 'b' of to 100
+
+    } else {
+        //randomly generates a number for each variable between 1 & 100
+        a = Math.floor(Math.random() * 100) + 1;
+        b = Math.floor(Math.random() * 100) +1;
+    }
 
     return `${a} ${randomOperator} ${b}`;
 }
@@ -32,8 +40,8 @@ function isCorrectAnswer(question, answer) {
     const [a, operator, b] = question.split();
      
     //convert numbers to integer from string
-    const num1 = parseInt(a, 10);
-    const num2 = parseInt(b, 10);
+    const num1 = parseInt(a, 100);
+    const num2 = parseInt(b, 100);
 
     // get value of the result of the question based on which operator is used
     let correctAnswer;
