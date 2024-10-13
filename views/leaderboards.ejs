@@ -5,8 +5,8 @@
 <!-- Display the list of top streaks -->
  <h2>Top 10 Streaks:</h2>
 <ul>
-    <% topStreaks.forEach((streak, index) => { %>
-        <li><%= index + 1 %>. <%= streak %></li>
+    <% topStreaks.forEach(({streak, date}, index) => { %>
+        <li><%= index + 1 %>. Streak: <%= streak %> Date: <%= date %></li>
     <% }) %>
 </ul>
 
