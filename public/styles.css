@@ -3,10 +3,38 @@ body {
     height: 100%;
     padding: 0px;
     margin: 0px;
+    flex-direction: column;
+    align-items: center;
     font-family: 'Lato', sans-serif;
     display: flex;
     color: #F6F6F6;
 }
+
+.quizContainer {
+    
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for a 3D effect */
+    max-width: 500px;
+    width: 90%; /* Responsive width */
+    text-align: center; /* Center align text */
+    margin-top: 20px;
+   
+}
+
+h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+p {
+    margin: 10px 0;
+}
+
+
+
+
+
 
 .main-content {
     display: flex;
