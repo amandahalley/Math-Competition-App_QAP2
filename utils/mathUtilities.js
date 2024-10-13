@@ -25,9 +25,6 @@ function getQuestion() {
 
     return `${a} ${randomOperator} ${b}`;
 }
-
-console.log(getQuestion());
-
 /**
  * Parses the provided question and gets whether or not the provided answer is correct
  * 
@@ -63,7 +60,6 @@ function isCorrectAnswer(question, answer) {
         default:
             return false;
     }
-    console.log(correctAnswer === answer);
     return correctAnswer === parseFloat(answer);
 }
 // // Example usage of isCorrectAnswer
