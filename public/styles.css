@@ -31,11 +31,21 @@ p {
     margin: 10px 0;
 }
 
+.comp-button {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
 
+.comp-button:hover {
+    opacity: 0.2;
+}
 
-
-
-
+.comp-container {
+    flex-direction: row;
+}
 .main-content {
     display: flex;
     justify-content: center;
