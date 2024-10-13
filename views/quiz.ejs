@@ -2,10 +2,15 @@
 <%- include('partials/header') %>
 
     <!-- Display question or whatever else here -->
-    <h1>Math Quiz</h1>
-    <p>Answer the question below:</p>
-    <p>Streak: <%= streak %></p>  <!-- Display the current streak -->
+     
+
+    
+    <h1>Math Quiz</h1> 
+    
+    <div class = "quizContainer">
     <p>Question: <%= question %></p>  <!-- Display the current question -->
+    <p>Streak: <%= streak %></p>  <!-- Display the current streak -->
+    
 
     <form action="/quiz" method="POST">
         <!-- This handles sending the user's answer back to the server. It's not recommended you modify this, as you shouldn't need to -->       
@@ -13,5 +18,7 @@
         <input type="text" id="answer" name="answer" required>
         <button type="submit">Submit</button>
     </form>
+</div>
+
 </body>
 </html>
