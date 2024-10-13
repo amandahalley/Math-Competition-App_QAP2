@@ -41,7 +41,7 @@ function isCorrectAnswer(question, answer) {
     const num1 = parseInt(a, 10);
     const num2 = parseInt(b, 10);
 
-    // get value of the result of the question based on which operator is used
+    //get value of the result of the question based on which operator is used
     let correctAnswer;
     switch (operator) {
         case '*':
@@ -62,11 +62,6 @@ function isCorrectAnswer(question, answer) {
     }
     return correctAnswer === parseFloat(answer);
 }
-// // Example usage of isCorrectAnswer
-// const question = getQuestion();
-// console.log(question); // To see the generated question
-// console.log(isCorrectAnswer(question,3)); // Replace 42 with a sample answer for testing
-
 
 module.exports = {
     getQuestion,
