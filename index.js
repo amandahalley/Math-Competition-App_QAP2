@@ -28,7 +28,7 @@ app.get('/leaderboards', (req, res) => {
     res.render('leaderboards', {topStreaks: quizState.topStreaks, streak: quizState.streak});
 })
 
-app.get('/complete', (req, res) => { //quiz complete page not made yet
+app.get('/complete', (req, res) => { 
     res.render('complete', {streak: quizState.streak});
 })
 
@@ -45,11 +45,14 @@ app.post('/quiz', (req, res) => {
             quizState.streak += 1; //update streak by 1 if the answer is correct
             res.redirect('/quiz'); //redirect to the completion page
         } else {
-            // If the answer is incorrect, update the leaderboard with streak
+            //if the answer is incorrect, update the leaderboard with streak
             if (quizState.streak > 0) {
-                quizState.topStreaks.push(quizState.streak);
+                quizState.topStreaks.push({ 
+                    streak: quizState.streak, 
+                    date: new Date().toLocaleDateString() //stores current date of each streak
+                });
                 quizState.topStreaks.sort((a, b) => b - a); //have top 10 streaks show in descending order
-                quizState.topStreaks = quizState.topStreaks.slice(0, 10); // Keep only the top 10 streaks
+                quizState.topStreaks = quizState.topStreaks.slice(0, 10); //keep only the top 10 streaks
             }
 
             quizState.streak = 0; //reset the streak if answer is incorrect
