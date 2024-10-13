@@ -29,7 +29,7 @@ app.get('/leaderboards', (req, res) => {
 })
 
 app.get('/complete', (req, res) => { //quiz complete page not made yet
-    res.render('complete');
+    res.render('complete', {streak: quizState.streak});
 })
 
 
@@ -39,14 +39,11 @@ app.post('/quiz', (req, res) => {
     const question = quizState.currentQuestion; //get the current question from the state
 
     if (question) {
-        console.log(question);
         //check if the answer is correct
         const isCorrect = isCorrectAnswer(question, parseFloat(answer));
-        console.log("test");
         if (isCorrect) {
             quizState.streak += 1; //update streak by 1 if the answer is correct
-            console.log(quizState.streak);
-            res.redirect('/complete'); //redirect to the completion page
+            res.redirect('/quiz'); //redirect to the completion page
         } else {
             // If the answer is incorrect, update the leaderboard with streak
             if (quizState.streak > 0) {
@@ -56,7 +53,7 @@ app.post('/quiz', (req, res) => {
             }
 
             quizState.streak = 0; //reset the streak if answer is incorrect
-            res.redirect('/quiz'); //redirect back to the quiz page
+            res.redirect('/complete'); //redirect back to the quiz page
         }
     } else {
         res.redirect('/'); //redirect to the home page
