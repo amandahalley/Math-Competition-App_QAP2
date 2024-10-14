@@ -13,7 +13,6 @@ describe("Tests for getQuestion", () => {
         expect(['+', '-', '*', '/']).toContain(operator); //check that operator is valid
     });
 
-    //possibly add testing for generating a random question
 });
 
 
