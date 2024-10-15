@@ -15,7 +15,7 @@ function getQuestion() {
     //make sure numbers for division are only up to 100
     if (randomOperator === '/') {
         b = Math.floor(Math.random() * 10) + 1; 
-        a = b * (Math.floor(Math.random() * 10) + 1); // makes sure 'a' is a multiple of 'b' of to 100
+        a = b * (Math.floor(Math.random() * 10) + 1); //makes sure 'a' is a multiple of 'b' up to 100
 
     } else {
         //randomly generates a number for each variable between 1 & 100
@@ -33,7 +33,7 @@ function getQuestion() {
  * @returns {boolean} True if the answer was correct, false otherwise.
  */
 function isCorrectAnswer(question, answer) {
-    console.log('tets');
+    
     //split question
     const [a, operator, b] = question.split(' ');
      

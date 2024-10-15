@@ -15,7 +15,7 @@ let quizState = {
 
 //Some routes required for full functionality are missing here. Only get routes should be required
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', {streak: quizState.streak});
 });
 
 app.get('/quiz', (req, res) => {
@@ -43,7 +43,7 @@ app.post('/quiz', (req, res) => {
         const isCorrect = isCorrectAnswer(question, parseFloat(answer));
         if (isCorrect) {
             quizState.streak += 1; //update streak by 1 if the answer is correct
-            res.redirect('/quiz'); //redirect to the completion page
+            res.redirect('/quiz'); //redirect to the quiz page
         } else {
             //if the answer is incorrect, update the leaderboard with streak
             if (quizState.streak > 0) {
@@ -55,14 +55,12 @@ app.post('/quiz', (req, res) => {
                 quizState.topStreaks = quizState.topStreaks.slice(0, 10); //keep only the top 10 streaks
             }
 
-            quizState.streak = 0; //reset the streak if answer is incorrect
-            res.redirect('/complete'); //redirect back to the quiz page
+            quizState.streak = 0; //reset the current streak if answer is incorrect
+            res.redirect('/complete'); //redirect back to the complete page
         }
     } else {
         res.redirect('/'); //redirect to the home page
     }
-
-    console.log(`Answer: ${answer}, Current Streak: ${quizState.streak}`);
 });
 
 // Start the server

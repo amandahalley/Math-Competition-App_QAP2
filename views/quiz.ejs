@@ -6,8 +6,8 @@
     <h1>Math Quiz</h1> 
     
     <div class = "quizContainer">
-    <p>Question: <%= question %></p>  <!-- Display the current question -->
-    <p>Streak: <%= streak %></p>  <!-- Display the current streak -->
+    <p>Question: <%= question %></p>  
+    <p>Streak: <%= streak %></p>  
     
 
     <form action="/quiz" method="POST">
@@ -17,6 +17,8 @@
         <button type="submit">Submit</button>
     </form>
 </div>
+
+<a href="/"><button class="comp-button">Return home</button></a>
 
 </body>
 </html>

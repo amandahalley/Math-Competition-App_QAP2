@@ -14,10 +14,10 @@ body {
     
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for a 3D effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     max-width: 500px;
-    width: 90%; /* Responsive width */
-    text-align: center; /* Center align text */
+    width: 90%; 
+    text-align: center;
     margin-top: 20px;
    
 }
